@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Système de filtrage pour le catalogue
     const catalogueTabs = document.querySelectorAll('.catalogue-tab');
-    const vehicleCards = document.querySelectorAll('.vehicle-card');
+    const vehicleCards = document.querySelectorAll('.vehicles-grid .vehicle-card');
     const searchInput = document.getElementById('vehicle-search');
     
     if (catalogueTabs.length > 0) {
