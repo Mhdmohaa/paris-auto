@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - Paris Auto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Effet de particules dorées -->
+    <div class="particles" id="particles"></div>
+
+    <!-- En-tête -->
+    <header id="header">
+        <div class="logo-container">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" width="50" height="50">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#D4AF37" stroke-width="3" />
+                    <path d="M30,40 L50,20 L70,40 L60,40 L60,80 L40,80 L40,40 Z" fill="#D4AF37" />
+                </svg>
+            </div>
+            <div class="logo-text">PARIS AUTO</div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="catalogue.html" class="active">Catalogue</a></li>
+                <li><a href="recrutement.html">Recrutement</a></li>
+            </ul>
+        </nav>
+        
+        <div class="nav-icons">
+            <a href="https://discord.gg/parisauto" target="_blank" class="nav-icon">
+                <i class="fab fa-discord"></i>
+            </a>
+            <div class="nav-icon">
+                <i class="fas fa-phone"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Catalogue -->
+    <section class="catalogue" style="padding-top: 150px;">
+        <div class="section-header">
+            <h2>Notre Collection Exclusive</h2>
+            <p>Découvrez notre sélection de véhicules haut de gamme</p>
+        </div>
+        
+        <div class="catalogue-container">
+            <div class="catalogue-tabs">
+                <div class="catalogue-tab active" data-category="all">Tous les véhicules</div>
+                <div class="catalogue-tab" data-category="sport">Sport</div>
+                <div class="catalogue-tab" data-category="luxe">Luxe</div>
+                <div class="catalogue-tab" data-category="suv">SUV</div>
+                <div class="catalogue-tab" data-category="classique">Classique</div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="vehicle-search" placeholder="Rechercher un véhicule...">
+            </div>
+            
+            <div class="vehicles-grid">
+                <div class="vehicle-card in-view" data-category="luxe">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-price">$250,000</div>
+                    <div class="vehicle-info">
+                        <h3>Enus Windsor</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> 220 mph</div>
+                            <div class="spec"><i class="fas fa-gas-pump"></i> Essence</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> Automatique</div>
+                        </div>
+                        <p>Véhicule de luxe par excellence, parfait pour les dirigeants exigeants.</p>
+                        <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card in-view" data-category="sport">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-price">$350,000</div>
+                    <div class="vehicle-info">
+                        <h3>Progen T20</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> 250 mph</div>
+                            <div class="spec"><i class="fas fa-gas-pump"></i> Essence</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> Manuelle</div>
+                        </div>
+                        <p>Supercar ultra performante avec un design aérodynamique révolutionnaire.</p>
+                        <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card in-view" data-category="suv">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-price">$180,000</div>
+                    <div class="vehicle-info">
+                        <h3>Gallivanter Baller</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> 190 mph</div>
+                            <div class="spec"><i class="fas fa-gas-pump"></i> Diesel</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> Automatique</div>
+                        </div>
+                        <p>SUV luxueux avec un intérieur spacieux et des finitions haut de gamme.</p>
+                        <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card in-view" data-category="classique">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-price">$120,000</div>
+                    <div class="vehicle-info">
+                        <h3>Declasse Tornado</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> 160 mph</div>
+                            <div class="spec"><i class="fas fa-gas-pump"></i> Essence</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> Manuelle</div>
+                        </div>
+                        <p>Classique intemporel restauré avec des pièces d'origine.</p>
+                        <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card in-view" data-category="luxe">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-price">$280,000</div>
+                    <div class="vehicle-info">
+                        <h3>Obey 9F</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> 230 mph</div>
+                            <div class="spec"><i class="fas fa-gas-pump"></i> Essence</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> Automatique</div>
+                        </div>
+                        <p>Coupé luxueux allemand avec une technologie de pointe.</p>
+                        <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card in-view" data-category="sport">
+                    <div class="vehicle-image"></div>
+                    <div class="vehicle-price">$400,000</div>
+                    <div class="vehicle-info">
+                        <h3>Truffade Adder</h3>
+                        <div class="vehicle-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> 260 mph</div>
+                            <div class="spec"><i class="fas fa-gas-pump"></i> Essence</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> Manuelle</div>
+                        </div>
+                        <p>Hypercar française exceptionnelle avec des performances de course.</p>
+                        <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>PARIS AUTO</h3>
+                <p>Concessionnaire premium sur GTA RP</p>
+                <p>Los Santos - Rue de la République</p>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>LIENS RAPIDES</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="catalogue.html"><i class="fas fa-car"></i> Catalogue</a></li>
+                    <li><a href="recrutement.html"><i class="fas fa-user-tie"></i> Recrutement</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>CONTACT</h3>
+                <p><i class="fab fa-discord"></i> discord.gg/parisauto</p>
+                <p><i class="fas fa-phone"></i> 555-PARIS-AUTO</p>
+                <p><i class="fas fa-envelope"></i> contact@parisauto-rp.fr</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Paris Auto - Tous droits réservés | Conçu avec passion pour Los Santos</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
