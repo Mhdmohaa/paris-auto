@@ -109,18 +109,18 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Alfa Romeo", modele: "Giulia", prix: 45000 * 2, vitesse: 240, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Berline sportive italienne" },
             
             // Alpine
-            { marque: "Alpine", modele: "A11OS", prix: 65000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Sportive légendaire française" },
+            { marque: "Alpine", modele: "A110S", prix: 65000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Sportive légendaire française" },
             { marque: "Alpine", modele: "A110", prix: 60000 * 2, vitesse: 260, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Icône française de la performance" },
             
             // Audi
-            { marque: "Audi", modele: "AG V-Mod", prix: 70000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle spécial Audi" },
+            { marque: "Audi", modele: "A6 V-Mod", prix: 70000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle spécial Audi" },
             { marque: "Audi", modele: "A4 Quattro ABT 2017", prix: 50000 * 2, vitesse: 260, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Version sportive de l'A4" },
             { marque: "Audi", modele: "A6", prix: 45000 * 2, vitesse: 240, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Berline de luxe allemande" },
             { marque: "Audi", modele: "A8 Long 2022", prix: 130000 * 2, vitesse: 250, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Haut de gamme Audi avec allongement" },
             { marque: "Audi", modele: "Buffalo", prix: 40000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle sportif Audi" },
             { marque: "Audi", modele: "E-Tron GT", prix: 140000 * 2, vitesse: 245, category: "luxe", carburant: "Électrique", transmission: "Automatique", description: "Sportive électrique haut de gamme" },
             { marque: "Audi", modele: "Exemplar", prix: 60000 * 2, vitesse: 240, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Modèle exemplaire Audi" },
-            { marque: "Audi", modele: "FI03", prix: 12000 * 2, vitesse: 180, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Modèle classique Audi" },
+            { marque: "Audi", modele: "F103", prix: 12000 * 2, vitesse: 180, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Modèle classique Audi" },
             { marque: "Audi", modele: "Q7", prix: 70000 * 2, vitesse: 220, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV premium allemand" },
             { marque: "Audi", modele: "Q8 2020", prix: 95000 * 2, vitesse: 230, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV coupé de luxe" },
             { marque: "Audi", modele: "Q8 2023", prix: 110000 * 2, vitesse: 235, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Dernière génération du Q8" },
@@ -160,6 +160,13 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Dacia", modele: "Sandero", prix: 14000 * 2, vitesse: 170, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine économique" },
             { marque: "Dacia", modele: "Stepway 2021", prix: 16000 * 2, vitesse: 175, category: "suv", carburant: "Essence", transmission: "Manuelle", description: "Version crossover" },
             
+            // Ferrari
+            { marque: "Ferrari", modele: "California T 2015", prix: 210000 * 2, vitesse: 320, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Cabriolet sportif italien" },
+            { marque: "Ferrari", modele: "458 Italia", prix: 240000 * 2, vitesse: 330, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Supercar italienne" },
+            { marque: "Ferrari", modele: "FCT", prix: 220000 * 2, vitesse: 325, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle spécial Ferrari" },
+            { marque: "Ferrari", modele: "F8 Tributo 2020", prix: 270000 * 2, vitesse: 340, category: "sport", carburant: "Essence", transmission: "Automatique", description: "F8 Tributo 2020" },
+            { marque: "Ferrari", modele: "TDF", prix: 290000 * 2, vitesse: 335, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Ferrari de collection" },
+            
             // Ford
             { marque: "Ford", modele: "F150 Raptor", prix: 60000 * 2, vitesse: 180, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Pick-up performant" },
             { marque: "Ford", modele: "Mustang Fastback 1966", prix: 45000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Légende américaine" },
@@ -174,6 +181,9 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Jeep", modele: "Cherokee Trackhawk", prix: 75000 * 2, vitesse: 290, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV ultra-performant" },
             { marque: "Jeep", modele: "2012", prix: 45000 * 2, vitesse: 190, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Modèle 2012" },
             
+            // Kia
+            { marque: "Kia", modele: "Sportage", prix: 27000 * 2, vitesse: 200, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV polyvalent" },
+            
             // Lexus
             { marque: "Lexus", modele: "LFA", prix: 375000 * 2, vitesse: 325, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Supercar japonaise exclusive" },
             { marque: "Lexus", modele: "LX600", prix: 120000 * 2, vitesse: 210, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV de luxe" },
@@ -182,11 +192,24 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "McLaren", modele: "720S", prix: 280000 * 2, vitesse: 340, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Supercar britannique" },
             { marque: "McLaren", modele: "720S Alt", prix: 275000 * 2, vitesse: 340, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Autre version du 720S" },
             
-            // Peugeot (suite dans le commentaire suivant)
-        ];
-
-        // Suite des véhicules Peugeot
-        const peugeotVehicles = [
+            // Mercedes
+            { marque: "Mercedes", modele: "S500", prix: 120000 * 2, vitesse: 250, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Berline haut de gamme" },
+            { marque: "Mercedes", modele: "A45 AMG", prix: 60000 * 2, vitesse: 270, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Compacte sportive" },
+            { marque: "Mercedes", modele: "C63 W205", prix: 90000 * 2, vitesse: 290, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé sportif" },
+            { marque: "Mercedes", modele: "CLS63S", prix: 110000 * 2, vitesse: 300, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé 4 portes sportif" },
+            { marque: "Mercedes", modele: "E63S F", prix: 105000 * 2, vitesse: 300, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Berline sportive" },
+            { marque: "Mercedes", modele: "E63 W213", prix: 110000 * 2, vitesse: 300, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle W213" },
+            { marque: "Mercedes", modele: "E63 2014", prix: 95000 * 2, vitesse: 295, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle 2014" },
+            { marque: "Mercedes", modele: "GLC63 AMG", prix: 100000 * 2, vitesse: 280, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV sportif" },
+            { marque: "Mercedes", modele: "GLE", prix: 85000 * 2, vitesse: 230, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV familial" },
+            { marque: "Mercedes", modele: "GLE 450", prix: 90000 * 2, vitesse: 240, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Version 450" },
+            { marque: "Mercedes", modele: "GLA45", prix: 62000 * 2, vitesse: 250, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV compact sportif" },
+            { marque: "Mercedes", modele: "S63 AMG 2018", prix: 135000 * 2, vitesse: 300, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Berline de luxe sportive" },
+            
+            // Opel
+            { marque: "Opel", modele: "Insignia Tourer", prix: 32000 * 2, vitesse: 220, category: "classique", carburant: "Diesel", transmission: "Automatique", description: "Break familial" },
+            
+            // Peugeot
             { marque: "Peugeot", modele: "106", prix: 10000 * 2, vitesse: 160, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine économique" },
             { marque: "Peugeot", modele: "108", prix: 14000 * 2, vitesse: 165, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine urbaine" },
             { marque: "Peugeot", modele: "108 (Alt)", prix: 14500 * 2, vitesse: 165, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Version alternative" },
@@ -211,11 +234,9 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Peugeot", modele: "Expert", prix: 28000 * 2, vitesse: 170, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire polyvalent" },
             { marque: "Peugeot", modele: "F44", prix: 23000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Modèle spécial" },
             { marque: "Peugeot", modele: "RCZ", prix: 27000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé sportif" },
-            { marque: "Peugeot", modele: "Rifter 2019", prix: 21000 * 2, vitesse: 180, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Monospace spacieux" }
-        ];
-
-        // Renault
-        const renaultVehicles = [
+            { marque: "Peugeot", modele: "Rifter 2019", prix: 21000 * 2, vitesse: 180, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Monospace spacieux" },
+            
+            // Renault
             { marque: "Renault", modele: "Captur 2020", prix: 23000 * 2, vitesse: 180, category: "suv", carburant: "Diesel", transmission: "Automatique", description: "SUV compact moderne" },
             { marque: "Renault", modele: "Clio I.7", prix: 18000 * 2, vitesse: 170, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version économique" },
             { marque: "Renault", modele: "Clio I.I", prix: 16000 * 2, vitesse: 160, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Entrée de gamme" },
@@ -240,14 +261,28 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Renault", modele: "Traffic 99", prix: 23000 * 2, vitesse: 165, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version des années 90" },
             { marque: "Renault", modele: "Twingo", prix: 13000 * 2, vitesse: 155, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine pratique" },
             { marque: "Renault", modele: "Twizy", prix: 10000 * 2, vitesse: 80, category: "classique", carburant: "Électrique", transmission: "Automatique", description: "Véhicule électrique urbain" },
-            { marque: "Renault", modele: "Zoe", prix: 22000 * 2, vitesse: 135, category: "classique", carburant: "Électrique", transmission: "Automatique", description: "Citadine électrique" }
+            { marque: "Renault", modele: "Zoe", prix: 22000 * 2, vitesse: 135, category: "classique", carburant: "Électrique", transmission: "Automatique", description: "Citadine électrique" },
+            
+            // SEAT
+            { marque: "SEAT", modele: "Tarraco", prix: 30000 * 2, vitesse: 210, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV familial espagnol" },
+            
+            // Skoda
+            { marque: "Skoda", modele: "Kodiaq", prix: 33000 * 2, vitesse: 215, category: "suv", carburant: "Diesel", transmission: "Automatique", description: "SUV spacieux" },
+            { marque: "Skoda", modele: "Octavia 2017", prix: 22000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Berline compacte 2017" },
+            { marque: "Skoda", modele: "Octavia 2020", prix: 27000 * 2, vitesse: 220, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Modèle 2020" },
+            
+            // Toyota
+            { marque: "Toyota", modele: "AL18", prix: 20000 * 2, vitesse: 180, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Modèle économique" },
+            { marque: "Toyota", modele: "Tacoma Fox", prix: 35000 * 2, vitesse: 190, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Pick-up robuste" },
+            { marque: "Toyota", modele: "Supra Fox", prix: 55000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Sportive légendaire" },
+            { marque: "Toyota", modele: "Land Cruiser J79", prix: 60000 * 2, vitesse: 200, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "SUV tout-terrain" },
+            
+            // Volkswagen
+            { marque: "Volkswagen", modele: "Caddy 2020", prix: 25000 * 2, vitesse: 190, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire compact" }
         ];
-
-        // Fusionner tous les véhicules
-        const allVehiclesData = [...vehiclesData, ...peugeotVehicles, ...renaultVehicles];
         
         // Générer le HTML pour chaque véhicule
-        allVehiclesData.forEach(vehicle => {
+        vehiclesData.forEach(vehicle => {
             const vehicleCard = document.createElement('div');
             vehicleCard.className = `vehicle-card in-view`;
             vehicleCard.dataset.category = vehicle.category;
