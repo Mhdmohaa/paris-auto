@@ -147,6 +147,20 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Audi", modele: "SQ7 2016", prix: 85000 * 2, vitesse: 250, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV sportif 2016" },
             { marque: "Audi", modele: "TTS", prix: 60000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé compact sportif" },
             
+            // BMW - Nouveaux véhicules ajoutés
+            { marque: "BMW", modele: "M235I xDrive", prix: 60000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé sportif compact" },
+            { marque: "BMW", modele: "M323", prix: 48000 * 2, vitesse: 240, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Berline sportive" },
+            { marque: "BMW", modele: "M140i", prix: 55000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Compacte haute performance" },
+            { marque: "BMW", modele: "M3 Touring CSL", prix: 95000 * 2, vitesse: 290, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Break sportif haut de gamme" },
+            { marque: "BMW", modele: "G20", prix: 43000 * 2, vitesse: 230, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Série 3 récente" },
+            { marque: "BMW", modele: "M330i 2021", prix: 58000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Version sportive 2021" },
+            { marque: "BMW", modele: "M3 2022", prix: 88000 * 2, vitesse: 290, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Nouvelle génération 2022" },
+            { marque: "BMW", modele: "M4 GTS", prix: 110000 * 2, vitesse: 305, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Édition spéciale performante" },
+            { marque: "BMW", modele: "M6 F13", prix: 105000 * 2, vitesse: 305, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Grand tourisme sportif" },
+            { marque: "BMW", modele: "M760Li", prix: 160000 * 2, vitesse: 250, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Limousine de luxe V12" },
+            { marque: "BMW", modele: "E65", prix: 20000 * 2, vitesse: 230, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Série 7 ancienne génération" },
+            { marque: "BMW", modele: "E34", prix: 15000 * 2, vitesse: 220, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Modèle iconique des années 90" },
+            
             // Citroën
             { marque: "Citroën", modele: "2CV", prix: 9000 * 2, vitesse: 110, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Icône française intemporelle" },
             { marque: "Citroën", modele: "C4", prix: 20000 * 2, vitesse: 190, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Compacte polyvalente" },
