@@ -278,7 +278,28 @@ document.addEventListener('DOMContentLoaded', function() {
             { marque: "Toyota", modele: "Land Cruiser J79", prix: 60000 * 2, vitesse: 200, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "SUV tout-terrain" },
             
             // Volkswagen
-            { marque: "Volkswagen", modele: "Caddy 2020", prix: 25000 * 2, vitesse: 190, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire compact" }
+            { marque: "Volkswagen", modele: "Caddy 2020", prix: 25000 * 2, vitesse: 190, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire compact" },
+            
+            // Moto
+            { marque: "Plaggio", modele: "Zip", prix: 2500.00 * 2, vitesse: 110, category: "moto", carburant: "Essence", transmission: "Automatique", description: "Scooter urbain économique" },
+            { marque: "Frakas", modele: "", prix: 3500.00 * 2, vitesse: 130, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto polyvalente" },
+            { marque: "Dirt Bike", modele: "", prix: 4000.00 * 2, vitesse: 90, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto tout-terrain" },
+            { marque: "Honda", modele: "CR85", prix: 5000.00 * 2, vitesse: 100, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto de compétition légère" },
+            { marque: "Suzuki", modele: "RMZI25", prix: 6000.00 * 2, vitesse: 120, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto enduro" },
+            { marque: "Yamaha", modele: "XMax 2017", prix: 6000.00 * 2, vitesse: 135, category: "moto", carburant: "Essence", transmission: "Automatique", description: "Scooter maxi" },
+            { marque: "Suzuki", modele: "RMZ250 2015", prix: 6500.00 * 2, vitesse: 130, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto de motocross" },
+            { marque: "Yamaha", modele: "YZ450", prix: 6900.00 * 2, vitesse: 140, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto de cross performante" },
+            { marque: "Honda", modele: "CRF450 2015", prix: 7000.00 * 2, vitesse: 140, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Enduro compétition" },
+            { marque: "Suzuki", modele: "RMZ250 V3", prix: 7000.00 * 2, vitesse: 130, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto de motocross" },
+            { marque: "KTM", modele: "SXF450", prix: 7200.00 * 2, vitesse: 145, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto de cross haute performance" },
+            { marque: "Yamaha", modele: "TMax DX", prix: 8500.00 * 2, vitesse: 170, category: "moto", carburant: "Essence", transmission: "Automatique", description: "Scooter sportif" },
+            { marque: "Honda", modele: "CBR650R", prix: 9000.00 * 2, vitesse: 200, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Sportive roadster" },
+            { marque: "Twin Cam", modele: "Custom", prix: 11000.00 * 2, vitesse: 180, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto custom" },
+            { marque: "Yamaha", modele: "YZF", prix: 12000.00 * 2, vitesse: 220, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Sportive légendaire" },
+            { marque: "Yamaha", modele: "YZF SM2", prix: 13000.00 * 2, vitesse: 230, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "SuperMotard" },
+            { marque: "Kawasaki", modele: "ZX10R", prix: 15000.00 * 2, vitesse: 250, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Sportive de compétition" },
+            { marque: "Yamaha", modele: "RI Gwop", prix: 16000.00 * 2, vitesse: 240, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Moto sportive exclusive" },
+            { marque: "BMW", modele: "S1000RR", prix: 18000.00 * 2, vitesse: 250, category: "moto", carburant: "Essence", transmission: "Manuelle", description: "Superbike allemande" }
         ];
         
         // Générer le HTML pour chaque véhicule
@@ -316,8 +337,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Peupler le filtre des marques
     function populateBrandFilter() {
         const brands = [...new Set(allVehicles.map(v => v.dataset.brand))].sort();
+        // Ajouter les marques de motos manquantes
+        const motoBrands = ["Plaggio", "Frakas", "Dirt Bike", "Twin Cam"];
+        const allBrands = [...new Set([...brands, ...motoBrands])].sort();
         
-        brands.forEach(brand => {
+        allBrands.forEach(brand => {
             const option = document.createElement('option');
             option.value = brand;
             option.textContent = brand;
