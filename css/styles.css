@@ -638,6 +638,44 @@ section {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
+/* Options de tri */
+.sorting-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.sort-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sort-group label {
+    font-weight: 600;
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.sort-group select {
+    padding: 10px 15px;
+    background: var(--gray);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    color: var(--light);
+    font-size: 1rem;
+    min-width: 200px;
+    transition: var(--transition);
+}
+
+.sort-group select:focus {
+    border-color: var(--gold);
+    outline: none;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
 .vehicles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -858,6 +896,11 @@ footer {
     .recruitment-container {
         grid-template-columns: 1fr;
     }
+    
+    .sorting-options {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -893,6 +936,10 @@ footer {
         width: 100%;
         text-align: center;
     }
+    
+    .vehicles-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 576px) {
@@ -904,10 +951,6 @@ footer {
     .btn {
         width: 100%;
         max-width: 300px;
-    }
-    
-    .vehicles-grid {
-        grid-template-columns: 1fr;
     }
     
     .recruitment-card {

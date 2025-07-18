@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Système de filtrage pour le catalogue
     const catalogueTabs = document.querySelectorAll('.catalogue-tab');
-    const vehicleCards = document.querySelectorAll('.vehicles-grid .vehicle-card');
     const searchInput = document.getElementById('vehicle-search');
     
     if (catalogueTabs.length > 0) {
@@ -77,31 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tab.classList.add('active');
                 
                 const category = tab.dataset.category;
-                
-                // Filtrer les véhicules
-                vehicleCards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-    
-    // Recherche de véhicules
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            
-            vehicleCards.forEach(card => {
-                const vehicleName = card.querySelector('h3').textContent.toLowerCase();
-                if (vehicleName.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                sortVehicles(); // Actualiser l'affichage
             });
         });
     }
@@ -117,5 +92,289 @@ document.addEventListener('DOMContentLoaded', function() {
                 content.classList.toggle('active');
             });
         });
+    }
+    
+    // Système de tri pour le catalogue
+    const sortSelect = document.getElementById('sort-by');
+    const brandFilter = document.getElementById('brand-filter');
+    const vehiclesContainer = document.getElementById('vehicles-container');
+    let allVehicles = [];
+    
+    // Charger les véhicules
+    function loadVehicles() {
+        // Liste complète des véhicules
+        const vehiclesData = [
+            // Alfa Romeo
+            { marque: "Alfa Romeo", modele: "AQV", prix: 28000 * 2, vitesse: 220, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Sportive italienne au design élégant" },
+            { marque: "Alfa Romeo", modele: "Giulia", prix: 45000 * 2, vitesse: 240, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Berline sportive italienne" },
+            
+            // Alpine
+            { marque: "Alpine", modele: "A11OS", prix: 65000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Sportive légendaire française" },
+            { marque: "Alpine", modele: "A110", prix: 60000 * 2, vitesse: 260, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Icône française de la performance" },
+            
+            // Audi
+            { marque: "Audi", modele: "AG V-Mod", prix: 70000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle spécial Audi" },
+            { marque: "Audi", modele: "A4 Quattro ABT 2017", prix: 50000 * 2, vitesse: 260, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Version sportive de l'A4" },
+            { marque: "Audi", modele: "A6", prix: 45000 * 2, vitesse: 240, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Berline de luxe allemande" },
+            { marque: "Audi", modele: "A8 Long 2022", prix: 130000 * 2, vitesse: 250, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Haut de gamme Audi avec allongement" },
+            { marque: "Audi", modele: "Buffalo", prix: 40000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle sportif Audi" },
+            { marque: "Audi", modele: "E-Tron GT", prix: 140000 * 2, vitesse: 245, category: "luxe", carburant: "Électrique", transmission: "Automatique", description: "Sportive électrique haut de gamme" },
+            { marque: "Audi", modele: "Exemplar", prix: 60000 * 2, vitesse: 240, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Modèle exemplaire Audi" },
+            { marque: "Audi", modele: "FI03", prix: 12000 * 2, vitesse: 180, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Modèle classique Audi" },
+            { marque: "Audi", modele: "Q7", prix: 70000 * 2, vitesse: 220, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV premium allemand" },
+            { marque: "Audi", modele: "Q8 2020", prix: 95000 * 2, vitesse: 230, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV coupé de luxe" },
+            { marque: "Audi", modele: "Q8 2023", prix: 110000 * 2, vitesse: 235, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Dernière génération du Q8" },
+            { marque: "Audi", modele: "Q8 Prior Design", prix: 100000 * 2, vitesse: 240, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Édition spéciale Prior Design" },
+            { marque: "Audi", modele: "R8 2020", prix: 185000 * 2, vitesse: 330, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Supercar allemande exceptionnelle" },
+            { marque: "Audi", modele: "R8 Plus", prix: 180000 * 2, vitesse: 330, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Version améliorée du R8" },
+            { marque: "Audi", modele: "R8 V10", prix: 190000 * 2, vitesse: 330, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Avec moteur V10" },
+            { marque: "Audi", modele: "R8 VIO", prix: 190000 * 2, vitesse: 330, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Édition spéciale VIO" },
+            { marque: "Audi", modele: "RS4 Avant", prix: 75000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Break sportif" },
+            { marque: "Audi", modele: "RS4 Avant DRE", prix: 75000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Édition DRE" },
+            { marque: "Audi", modele: "RS5", prix: 80000 * 2, vitesse: 280, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé sportif" },
+            { marque: "Audi", modele: "RS5 2018", prix: 65000 * 2, vitesse: 275, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle 2018" },
+            { marque: "Audi", modele: "RS5 2022", prix: 75000 * 2, vitesse: 285, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle 2022" },
+            { marque: "Audi", modele: "RS6", prix: 100000 * 2, vitesse: 305, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Break ultra-sportif" },
+            { marque: "Audi", modele: "RS6 Mansory", prix: 140000 * 2, vitesse: 320, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Édition Mansory" },
+            { marque: "Audi", modele: "RS6 V2", prix: 95000 * 2, vitesse: 300, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Version 2 du RS6" },
+            { marque: "Audi", modele: "RS7", prix: 105000 * 2, vitesse: 305, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Berline sportive" },
+            { marque: "Audi", modele: "RS7 2013", prix: 70000 * 2, vitesse: 295, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle 2013" },
+            { marque: "Audi", modele: "RS7 2021", prix: 110000 * 2, vitesse: 310, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Modèle 2021" },
+            { marque: "Audi", modele: "RS7 Mansory", prix: 145000 * 2, vitesse: 320, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Édition Mansory" },
+            { marque: "Audi", modele: "RS7 SC820", prix: 135000 * 2, vitesse: 315, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Édition SC820" },
+            { marque: "Audi", modele: "RSQ8 Mansory", prix: 150000 * 2, vitesse: 300, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV sportif Mansory" },
+            { marque: "Audi", modele: "S8 2022", prix: 120000 * 2, vitesse: 250, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Berline de luxe performante" },
+            { marque: "Audi", modele: "SQ7 2016", prix: 85000 * 2, vitesse: 250, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV sportif 2016" },
+            { marque: "Audi", modele: "TTS", prix: 60000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé compact sportif" },
+            
+            // Citroën
+            { marque: "Citroën", modele: "2CV", prix: 9000 * 2, vitesse: 110, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Icône française intemporelle" },
+            { marque: "Citroën", modele: "C4", prix: 20000 * 2, vitesse: 190, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Compacte polyvalente" },
+            { marque: "Citroën", modele: "DS3", prix: 19000 * 2, vitesse: 195, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine au design unique" },
+            { marque: "Citroën", modele: "DS4", prix: 23000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Compacte premium" },
+            { marque: "Citroën", modele: "DS7", prix: 33000 * 2, vitesse: 210, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "SUV premium français" },
+            { marque: "Citroën", modele: "E-Mehari", prix: 17000 * 2, vitesse: 110, category: "classique", carburant: "Électrique", transmission: "Automatique", description: "Version électrique du Méhari" },
+            { marque: "Citroën", modele: "Xantia", prix: 11000 * 2, vitesse: 190, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Berline confortable" },
+            
+            // Dacia
+            { marque: "Dacia", modele: "Sandero", prix: 14000 * 2, vitesse: 170, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine économique" },
+            { marque: "Dacia", modele: "Stepway 2021", prix: 16000 * 2, vitesse: 175, category: "suv", carburant: "Essence", transmission: "Manuelle", description: "Version crossover" },
+            
+            // Ford
+            { marque: "Ford", modele: "F150 Raptor", prix: 60000 * 2, vitesse: 180, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Pick-up performant" },
+            { marque: "Ford", modele: "Mustang Fastback 1966", prix: 45000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Légende américaine" },
+            { marque: "Ford", modele: "Mustang GT", prix: 50000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Version sportive" },
+            { marque: "Ford", modele: "Raptor 2017", prix: 65000 * 2, vitesse: 185, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Modèle 2017" },
+            
+            // Hyundai
+            { marque: "Hyundai", modele: "Elantra CN7 N Line", prix: 23000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Berline sportive" },
+            { marque: "Hyundai", modele: "i20 N", prix: 25000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Citadine sportive" },
+            
+            // Jeep
+            { marque: "Jeep", modele: "Cherokee Trackhawk", prix: 75000 * 2, vitesse: 290, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV ultra-performant" },
+            { marque: "Jeep", modele: "2012", prix: 45000 * 2, vitesse: 190, category: "suv", carburant: "Essence", transmission: "Automatique", description: "Modèle 2012" },
+            
+            // Lexus
+            { marque: "Lexus", modele: "LFA", prix: 375000 * 2, vitesse: 325, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Supercar japonaise exclusive" },
+            { marque: "Lexus", modele: "LX600", prix: 120000 * 2, vitesse: 210, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV de luxe" },
+            
+            // McLaren
+            { marque: "McLaren", modele: "720S", prix: 280000 * 2, vitesse: 340, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Supercar britannique" },
+            { marque: "McLaren", modele: "720S Alt", prix: 275000 * 2, vitesse: 340, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Autre version du 720S" },
+            
+            // Peugeot (suite dans le commentaire suivant)
+        ];
+
+        // Suite des véhicules Peugeot
+        const peugeotVehicles = [
+            { marque: "Peugeot", modele: "106", prix: 10000 * 2, vitesse: 160, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine économique" },
+            { marque: "Peugeot", modele: "108", prix: 14000 * 2, vitesse: 165, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine urbaine" },
+            { marque: "Peugeot", modele: "108 (Alt)", prix: 14500 * 2, vitesse: 165, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Version alternative" },
+            { marque: "Peugeot", modele: "205", prix: 9000 * 2, vitesse: 170, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Légende des années 80" },
+            { marque: "Peugeot", modele: "205 GTI", prix: 16000 * 2, vitesse: 200, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version sportive mythique" },
+            { marque: "Peugeot", modele: "206", prix: 12000 * 2, vitesse: 180, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine populaire" },
+            { marque: "Peugeot", modele: "206 CC", prix: 15000 * 2, vitesse: 185, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Coupé cabriolet" },
+            { marque: "Peugeot", modele: "206 GTI", prix: 18000 * 2, vitesse: 210, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version sportive" },
+            { marque: "Peugeot", modele: "207", prix: 16000 * 2, vitesse: 185, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Successeur de la 206" },
+            { marque: "Peugeot", modele: "207 Sport", prix: 18000 * 2, vitesse: 210, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version sportive" },
+            { marque: "Peugeot", modele: "208", prix: 21000 * 2, vitesse: 190, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Citadine moderne" },
+            { marque: "Peugeot", modele: "307 CC", prix: 19000 * 2, vitesse: 195, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Coupé cabriolet" },
+            { marque: "Peugeot", modele: "308", prix: 24000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Compacte française" },
+            { marque: "Peugeot", modele: "308 (2022)", prix: 26000 * 2, vitesse: 210, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Modèle 2022" },
+            { marque: "Peugeot", modele: "308 GTI", prix: 28000 * 2, vitesse: 240, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version sportive" },
+            { marque: "Peugeot", modele: "405 GLX", prix: 10000 * 2, vitesse: 190, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Berline des années 90" },
+            { marque: "Peugeot", modele: "406", prix: 12000 * 2, vitesse: 200, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Berline familiale" },
+            { marque: "Peugeot", modele: "504", prix: 9000 * 2, vitesse: 170, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Classique des années 70" },
+            { marque: "Peugeot", modele: "508 GT Line", prix: 33000 * 2, vitesse: 230, category: "luxe", carburant: "Hybride", transmission: "Automatique", description: "Berline premium" },
+            { marque: "Peugeot", modele: "Bipper", prix: 13000 * 2, vitesse: 155, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire compact" },
+            { marque: "Peugeot", modele: "Boxer", prix: 25000 * 2, vitesse: 160, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire lourd" },
+            { marque: "Peugeot", modele: "Expert", prix: 28000 * 2, vitesse: 170, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire polyvalent" },
+            { marque: "Peugeot", modele: "F44", prix: 23000 * 2, vitesse: 200, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Modèle spécial" },
+            { marque: "Peugeot", modele: "RCZ", prix: 27000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Automatique", description: "Coupé sportif" },
+            { marque: "Peugeot", modele: "Rifter 2019", prix: 21000 * 2, vitesse: 180, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Monospace spacieux" }
+        ];
+
+        // Renault
+        const renaultVehicles = [
+            { marque: "Renault", modele: "Captur 2020", prix: 23000 * 2, vitesse: 180, category: "suv", carburant: "Diesel", transmission: "Automatique", description: "SUV compact moderne" },
+            { marque: "Renault", modele: "Clio I.7", prix: 18000 * 2, vitesse: 170, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version économique" },
+            { marque: "Renault", modele: "Clio I.I", prix: 16000 * 2, vitesse: 160, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Entrée de gamme" },
+            { marque: "Renault", modele: "Clio RS", prix: 22000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version sportive" },
+            { marque: "Renault", modele: "Clio RS 2000", prix: 25000 * 2, vitesse: 235, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Avec moteur 2.0L" },
+            { marque: "Renault", modele: "Clio SW", prix: 21000 * 2, vitesse: 185, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version break" },
+            { marque: "Renault", modele: "Clio V", prix: 21000 * 2, vitesse: 190, category: "classique", carburant: "Essence", transmission: "Automatique", description: "Dernière génération" },
+            { marque: "Renault", modele: "DC2", prix: 24000 * 2, vitesse: 180, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Modèle classique" },
+            { marque: "Renault", modele: "Espace III", prix: 17000 * 2, vitesse: 190, category: "suv", carburant: "Diesel", transmission: "Automatique", description: "Monospace familial" },
+            { marque: "Renault", modele: "Kangoo", prix: 19000 * 2, vitesse: 170, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire compact" },
+            { marque: "Renault", modele: "Koleos", prix: 30000 * 2, vitesse: 200, category: "suv", carburant: "Diesel", transmission: "Automatique", description: "SUV familial" },
+            { marque: "Renault", modele: "Laguna", prix: 22000 * 2, vitesse: 220, category: "classique", carburant: "Diesel", transmission: "Automatique", description: "Berline haut de gamme" },
+            { marque: "Renault", modele: "Mégane 2 Phase 1", prix: 19000 * 2, vitesse: 190, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Deuxième génération" },
+            { marque: "Renault", modele: "Mégane Break", prix: 23000 * 2, vitesse: 200, category: "classique", carburant: "Diesel", transmission: "Automatique", description: "Version break" },
+            { marque: "Renault", modele: "Mégane CC", prix: 24000 * 2, vitesse: 210, category: "luxe", carburant: "Essence", transmission: "Automatique", description: "Coupé cabriolet" },
+            { marque: "Renault", modele: "Mégane Sport", prix: 27000 * 2, vitesse: 250, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Compacte sportive" },
+            { marque: "Renault", modele: "PACEV", prix: 25000 * 2, vitesse: 190, category: "suv", carburant: "Essence", transmission: "Automatique", description: "SUV compact moderne" },
+            { marque: "Renault", modele: "RS Clio", prix: 26000 * 2, vitesse: 240, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version la plus sportive" },
+            { marque: "Renault", modele: "T1", prix: 15000 * 2, vitesse: 160, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire robuste" },
+            { marque: "Renault", modele: "Traffic 2019", prix: 28000 * 2, vitesse: 170, category: "suv", carburant: "Diesel", transmission: "Manuelle", description: "Utilitaire récent" },
+            { marque: "Renault", modele: "Traffic 66", prix: 27000 * 2, vitesse: 160, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version ancienne" },
+            { marque: "Renault", modele: "Traffic 99", prix: 23000 * 2, vitesse: 165, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version des années 90" },
+            { marque: "Renault", modele: "Twingo", prix: 13000 * 2, vitesse: 155, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Citadine pratique" },
+            { marque: "Renault", modele: "Twizy", prix: 10000 * 2, vitesse: 80, category: "classique", carburant: "Électrique", transmission: "Automatique", description: "Véhicule électrique urbain" },
+            { marque: "Renault", modele: "Zoe", prix: 22000 * 2, vitesse: 135, category: "classique", carburant: "Électrique", transmission: "Automatique", description: "Citadine électrique" }
+        ];
+
+        // Fusionner tous les véhicules
+        const allVehiclesData = [...vehiclesData, ...peugeotVehicles, ...renaultVehicles];
+        
+        // Générer le HTML pour chaque véhicule
+        allVehiclesData.forEach(vehicle => {
+            const vehicleCard = document.createElement('div');
+            vehicleCard.className = `vehicle-card in-view`;
+            vehicleCard.dataset.category = vehicle.category;
+            vehicleCard.dataset.brand = vehicle.marque;
+            vehicleCard.dataset.price = vehicle.prix;
+            vehicleCard.dataset.speed = vehicle.vitesse;
+            
+            vehicleCard.innerHTML = `
+                <div class="vehicle-image" style="background-image: url('https://via.placeholder.com/300x200?text=${vehicle.marque}+${vehicle.modele}');"></div>
+                <div class="vehicle-price">${vehicle.prix.toLocaleString('fr-FR')}€</div>
+                <div class="vehicle-info">
+                    <h3>${vehicle.marque} ${vehicle.modele}</h3>
+                    <div class="vehicle-specs">
+                        <div class="spec"><i class="fas fa-tachometer-alt"></i> ${vehicle.vitesse} km/h</div>
+                        <div class="spec"><i class="fas fa-gas-pump"></i> ${vehicle.carburant}</div>
+                        <div class="spec"><i class="fas fa-cogs"></i> ${vehicle.transmission}</div>
+                    </div>
+                    <p>${vehicle.description}</p>
+                    <a href="#" class="vehicle-details">Voir détails <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
+            
+            vehiclesContainer.appendChild(vehicleCard);
+        });
+
+        allVehicles = [...document.querySelectorAll('.vehicle-card')];
+        populateBrandFilter();
+        animateOnScroll();
+    }
+
+    // Peupler le filtre des marques
+    function populateBrandFilter() {
+        const brands = [...new Set(allVehicles.map(v => v.dataset.brand))].sort();
+        
+        brands.forEach(brand => {
+            const option = document.createElement('option');
+            option.value = brand;
+            option.textContent = brand;
+            brandFilter.appendChild(option);
+        });
+    }
+
+    // Fonctions de tri
+    function sortVehicles() {
+        const sortValue = sortSelect.value;
+        const brandValue = brandFilter.value;
+        const activeCategory = document.querySelector('.catalogue-tab.active').dataset.category;
+        
+        let sortedVehicles = [...allVehicles];
+        
+        // Appliquer le filtre de marque
+        if (brandValue !== 'all') {
+            sortedVehicles = sortedVehicles.filter(v => v.dataset.brand === brandValue);
+        }
+        
+        // Appliquer le filtre de catégorie
+        if (activeCategory !== 'all') {
+            sortedVehicles = sortedVehicles.filter(v => v.dataset.category === activeCategory);
+        }
+        
+        // Appliquer le tri
+        switch(sortValue) {
+            case 'price-asc':
+                sortedVehicles.sort((a, b) => a.dataset.price - b.dataset.price);
+                break;
+            case 'price-desc':
+                sortedVehicles.sort((a, b) => b.dataset.price - a.dataset.price);
+                break;
+            case 'name-asc':
+                sortedVehicles.sort((a, b) => 
+                    a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent));
+                break;
+            case 'name-desc':
+                sortedVehicles.sort((a, b) => 
+                    b.querySelector('h3').textContent.localeCompare(a.querySelector('h3').textContent));
+                break;
+            case 'speed-asc':
+                sortedVehicles.sort((a, b) => a.dataset.speed - b.dataset.speed);
+                break;
+            case 'speed-desc':
+                sortedVehicles.sort((a, b) => b.dataset.speed - a.dataset.speed);
+                break;
+        }
+        
+        // Mettre à jour l'affichage
+        vehiclesContainer.innerHTML = '';
+        sortedVehicles.forEach(v => vehiclesContainer.appendChild(v));
+    }
+    
+    // Recherche de véhicules
+    function searchVehicles() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const activeCategory = document.querySelector('.catalogue-tab.active').dataset.category;
+        const brandValue = brandFilter.value;
+        
+        let filteredVehicles = [...allVehicles];
+        
+        // Appliquer le filtre de catégorie
+        if (activeCategory !== 'all') {
+            filteredVehicles = filteredVehicles.filter(v => v.dataset.category === activeCategory);
+        }
+        
+        // Appliquer le filtre de marque
+        if (brandValue !== 'all') {
+            filteredVehicles = filteredVehicles.filter(v => v.dataset.brand === brandValue);
+        }
+        
+        // Appliquer la recherche
+        if (searchTerm) {
+            filteredVehicles = filteredVehicles.filter(v => {
+                const vehicleName = v.querySelector('h3').textContent.toLowerCase();
+                return vehicleName.includes(searchTerm);
+            });
+        }
+        
+        // Mettre à jour l'affichage
+        vehiclesContainer.innerHTML = '';
+        filteredVehicles.forEach(v => vehiclesContainer.appendChild(v));
+    }
+
+    // Écouteurs d'événements
+    if (sortSelect && brandFilter && searchInput) {
+        sortSelect.addEventListener('change', sortVehicles);
+        brandFilter.addEventListener('change', sortVehicles);
+        searchInput.addEventListener('input', searchVehicles);
+        
+        // Charger les véhicules au démarrage
+        loadVehicles();
     }
 });
