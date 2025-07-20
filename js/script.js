@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Renault
             { marque: "Renault", modele: "Captur 2020", prix: 23000 * 2, vitesse: 180, category: "suv", carburant: "Diesel", transmission: "Automatique", description: "SUV compact moderne" },
-            { marque: "Renault", modele: "Clio I.7", prix: 18000 * 2, vitesse: 170, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version économique" },
-            { marque: "Renault", modele: "Clio I.I", prix: 16000 * 2, vitesse: 160, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Entrée de gamme" },
+            { marque: "Renault", modele: "Clio 1.7", prix: 18000 * 2, vitesse: 170, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version économique" },
+            { marque: "Renault", modele: "Clio 1.1", prix: 16000 * 2, vitesse: 160, category: "classique", carburant: "Essence", transmission: "Manuelle", description: "Entrée de gamme" },
             { marque: "Renault", modele: "Clio RS", prix: 22000 * 2, vitesse: 230, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Version sportive" },
             { marque: "Renault", modele: "Clio RS 2000", prix: 25000 * 2, vitesse: 235, category: "sport", carburant: "Essence", transmission: "Manuelle", description: "Avec moteur 2.0L" },
             { marque: "Renault", modele: "Clio SW", prix: 21000 * 2, vitesse: 185, category: "classique", carburant: "Diesel", transmission: "Manuelle", description: "Version break" },
@@ -325,8 +325,17 @@ document.addEventListener('DOMContentLoaded', function() {
             vehicleCard.dataset.price = vehicle.prix;
             vehicleCard.dataset.speed = vehicle.vitesse;
             
+            // Générer le nom du fichier image
+            const brandPrefix = vehicle.marque.toLowerCase().replace(/\s+/g, '');
+            const modelName = vehicle.modele.toLowerCase().replace(/\s+/g, '');
+            const imageName = `${brandPrefix}_${modelName}.jpg`;
+            const imagePath = `images/${imageName}`;
+            
+            // URL du placeholder
+            const placeholderUrl = `https://via.placeholder.com/300x200?text=${vehicle.marque}+${vehicle.modele}`;
+            
             vehicleCard.innerHTML = `
-                <div class="vehicle-image" style="background-image: url('https://via.placeholder.com/300x200?text=${vehicle.marque}+${vehicle.modele}');"></div>
+                <div class="vehicle-image" style="background-image: url('${imagePath}'), url('${placeholderUrl}'); background-size: cover;"></div>
                 <div class="vehicle-price">${vehicle.prix.toLocaleString('fr-FR')}€</div>
                 <div class="vehicle-info">
                     <h3>${vehicle.marque} ${vehicle.modele}</h3>
